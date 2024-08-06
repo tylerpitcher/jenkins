@@ -8,7 +8,7 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins_home:/var/jenkins_home
+      - /tmp/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - CASC_JENKINS_CONFIG=/usr/share/jenkins/ref/casc.yaml
@@ -22,8 +22,3 @@ services:
 
 volumes:
   jenkins_home:
-    driver: local
-    driver_opts:
-      type: none
-      device: /tmp/jenkins_home
-      o: bind
