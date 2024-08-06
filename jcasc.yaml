@@ -1,0 +1,50 @@
+jenkins:
+  numExecutors: 2
+  securityRealm:
+    github:
+      clientID: "${GITHUB_CLIENT_ID}"
+      clientSecret: "${GITHUB_CLIENT_SECRET}"
+      githubApiUri: "https://api.github.com"
+      githubWebUri: "https://github.com"
+      oauthScopes: "read:org,user:email,repo"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+    globalMatrix:
+      entries:
+      - user:
+        name: "${GITHUB_USERNAME}"
+        permissions:
+        - "Overall/Administer"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: true
+
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  scriptApproval:
+    approvedSignatures:
+    - "method java.net.URLConnection getInputStream"
+    - "method java.net.URLConnection setRequestProperty java.lang.String java.lang.String"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getText java.io.InputStream"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - string:
+            scope: GLOBAL
+            id: "github-token"
+            secret: "${GITHUB_TOKEN}"
+            description: "Personal GitHub token"
+        - usernamePassword:
+            scope: GLOBAL
+            id: "dockerhub"
+            username: "${DOCKER_USERNAME}"
+            password: "${DOCKER_TOKEN}"
+            description: "Personal docker token"
+
+unclassified:
+  location:
+    url: ${HOST}
