@@ -27,6 +27,15 @@ security:
     approvedSignatures:
     - "method java.net.URLConnection getInputStream"
     - "method java.net.URLConnection setRequestProperty java.lang.String java.lang.String"
+    - "method java.net.http.HttpClient send java.net.http.HttpRequest java.net.http.HttpResponse$BodyHandler"
+    - "method java.net.http.HttpRequest$Builder build"
+    - "method java.net.http.HttpRequest$Builder header java.lang.String java.lang.String"
+    - "method java.net.http.HttpRequest$Builder uri java.net.URI"
+    - "method java.net.http.HttpResponse body"
+    - "staticMethod java.net.URI create java.lang.String"
+    - "staticMethod java.net.http.HttpClient newHttpClient"
+    - "staticMethod java.net.http.HttpRequest newBuilder"
+    - "staticMethod java.net.http.HttpResponse$BodyHandlers ofString"
     - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getText java.io.InputStream"
 
 credentials:
